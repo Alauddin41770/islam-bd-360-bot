@@ -66,3 +66,13 @@ bot.on("message", async (msg) => {
 bot.on("polling_error", (err) => {
   console.error("Polling error:", err.message);
 });
+
+// ===== Render Web Service-এর জন্য ছোট্ট HTTP সার্ভার (পোর্ট খোলা রাখতে) =====
+const http = require("http");
+const PORT = process.env.PORT || 3000;
+http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("বট চালু আছে ✅");
+}).listen(PORT, () => {
+  console.log("HTTP সার্ভার চালু, পোর্ট:", PORT);
+});
